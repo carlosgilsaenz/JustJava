@@ -21,6 +21,7 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
+    int costPerCoffee = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         displayPrice(calculatePrice());
     }
 
-    private int calculatePrice( ){
-        return quantity * 5;
+    private int calculatePrice(){
+        return quantity * costPerCoffee;
     }
 
     /**
