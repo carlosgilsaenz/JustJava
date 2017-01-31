@@ -32,11 +32,28 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view){
-        displayPrice(calculatePrice());
+        int price = calculatePrice();
+        displayMessage(createOrderSummary(price));
     }
 
+    /**
+     * @return total price
+     */
     private int calculatePrice(){
         return quantity * costPerCoffee;
+    }
+
+    /**
+     * Creates String for Order summary
+     *
+     * @param price of the order
+     * @return complete order summary in String form
+     */
+    private String createOrderSummary(int price){
+        String order = "Name: Carlos Saenz";
+        order += "\nQuantity: " + quantity;
+        order += "\nTotal: $"+ price + "\nThank You!";
+        return order;
     }
 
     /**
@@ -48,16 +65,25 @@ public class MainActivity extends AppCompatActivity {
         //quantityView.setText(NumberFormat.getInstance().format(number));
     }
 
-    private void displayPrice(int number){
-        TextView priceView = (TextView) findViewById(R.id.price_text_view);
-        priceView.setText("Total: $" + number + "\nThank you!");
+    /**
+     * @param coffeeOrder String of complete order details
+     */
+    private void displayMessage(String coffeeOrder){
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(coffeeOrder);
     }
 
+    /**
+     * @param view affects the Quantity display on screen
+     */
     public void increment(View view){
         quantity++;
         display(quantity);
     }
 
+    /**
+     * @param view affects the Quantity display on screen
+     */
     public void decrement(View view){
         if(quantity > 0){
             quantity--;}
