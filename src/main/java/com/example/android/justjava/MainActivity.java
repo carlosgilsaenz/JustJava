@@ -9,10 +9,11 @@ package com.example.android.justjava;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
-
-import java.text.NumberFormat;
 
 /**
  * This app displays an order form to order coffee.
@@ -33,7 +34,13 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view){
         int price = calculatePrice();
-        displayMessage(createOrderSummary(price));
+        Log.v("MainActivity", "The price is " + price);
+
+        EditText editText= (EditText) findViewById(R.id.name_editText);
+        String name = editText.getText().toString();
+        Log.v("MainActivity","The name entered is " + name);
+
+        displayMessage(createOrderSummary(price, name));
     }
 
     /**
@@ -49,8 +56,10 @@ public class MainActivity extends AppCompatActivity {
      * @param price of the order
      * @return complete order summary in String form
      */
-    private String createOrderSummary(int price){
-        String order = "Name: Carlos Saenz";
+    private String createOrderSummary(int price, String string){
+        String order = "Name: " + string;
+        order += "\nAdd Whipped cream? " + isChecked((CheckBox)findViewById(R.id.whipped_cream_checkbox));
+        order += "\nAdd Chocolate? " + isChecked((CheckBox)findViewById(R.id.chocolate_checkbox));
         order += "\nQuantity: " + quantity;
         order += "\nTotal: $"+ price + "\nThank You!";
         return order;
@@ -88,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
         if(quantity > 0){
             quantity--;}
         display(quantity);
+    }
+
+    private boolean isChecked(CheckBox checkBox){
+        return checkBox.isChecked();
     }
 }
 
