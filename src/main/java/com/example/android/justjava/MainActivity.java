@@ -9,6 +9,7 @@ package com.example.android.justjava;
 
 import android.content.Context;
 import android.content.Intent;
+import android.icu.text.NumberFormat;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         String order = createOrderSummary(price, name, isWhippedCream, isChocolate);
 
         //create subject line string
-        String subject = getApplicationName(this) + " order for " + name;
+        String subject = getString(R.string.order_java, name);
 
         //creates intent for email
         composeEmail(subject, order);
@@ -88,17 +89,18 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param price total order
      * @param name customers name
-     * @param whippedCream determine if whipped
-     * @param chocolate determine if added chocolates
+     * @param hasWhippedCream determine if whipped
+     * @param hasChocolate determine if added chocolates
      * @return complete order summary in String form
      */
-    private String createOrderSummary(int price, String name, boolean whippedCream, boolean chocolate){
+    private String createOrderSummary(int price, String name, boolean hasWhippedCream, boolean hasChocolate){
         //create string with multiple concatenations
-        String order = "Name: " + name;
-        order += "\nAdd Whipped cream? " + whippedCream;
-        order += "\nAdd Chocolate? " + chocolate;
-        order += "\nQuantity: " + quantity;
-        order += "\nTotal: $"+ price + "\nThank You!";
+        String order = getString(R.string.order_name, name);
+        order += "\n" + getString(R.string.order_whipped_cream, hasWhippedCream);
+        order += "\n" + getString(R.string.order_chocolate, hasChocolate);
+        order += "\n" + getString(R.string.order_quantity, quantity);
+        order += "\n" + getString(R.string.order_total, price);
+        order += "\n" + getString(R.string.thank_you);
         return order;
     }
 
@@ -165,11 +167,6 @@ public class MainActivity extends AppCompatActivity {
             Log.v("composeEmail", "Failed to resolveActivity()");
         }
 
-    }
-
-    public String getApplicationName(Context context) {
-        String appName = context.getApplicationInfo().loadLabel(getPackageManager()).toString();
-        return appName;
     }
 }
 

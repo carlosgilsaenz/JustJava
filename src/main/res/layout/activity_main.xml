@@ -18,7 +18,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name"
+            android:hint="@string/hint_name"
             android:textSize="16sp"
             android:layout_marginBottom="16dp"
             android:id="@+id/name_editText"/>
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="Toppings"
+            android:text="@string/text_view_toppings"
             android:textAllCaps="true"
             android:textSize="16sp" />
 
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="24dp"
-            android:text="Whipped cream"
+            android:text="@string/checkbox_whipped_cream"
             android:textSize="16sp" />
 
         <CheckBox
@@ -45,14 +45,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:paddingLeft="24dp"
-            android:text="Chocolate"
+            android:text="@string/check_box_chocolate"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="Quantity"
+            android:text="@string/text_view_quantity"
             android:textAllCaps="true"
             android:textSize="16sp" />
 
@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="submitOrder"
-            android:text="Order"
+            android:text="@string/button_order"
             android:textAllCaps="true"
             android:textSize="16sp" />
     </LinearLayout>
